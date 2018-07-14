@@ -7,6 +7,7 @@ const Squabbles = ({key, header, description}) => {
       <p> {header} </p>
       {description}
     </div>
+    
   );
 };
 
