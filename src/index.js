@@ -6,9 +6,11 @@ import registerServiceWorker from './registerServiceWorker';
 import { createStore } from 'redux';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import SquabbleApp from './reducers/SquabbleApp';
+import reducers from "./reducers";
 
-let store = createStore(SquabbleApp);
+
+let store = createStore(reducers);
+
 console.log(store.getState());
 
 

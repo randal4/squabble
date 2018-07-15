@@ -16,7 +16,7 @@ const SquabbleList = ({squabbles, onClick}) => {
 
 const mapStateToProps = (state, props) => {
   return {
-    squabbles: state.squabbles
+    squabbles: state.SquabbleApp.squabbles
   }
 };
 

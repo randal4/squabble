@@ -2,11 +2,12 @@ import React from 'react';
 
 const Squabbles = ({id, header, description, onClick}) => {
   return(
-    <div onClick={() => onClick(id)}>
+    <li>
       <h3> ({id}) - {header} </h3>
       <p>{description}</p>
-    </div>
-
+      <button onClick={() => onClick(id)}>delete</button>
+      <hr/>
+    </li>
   );
 };
 
