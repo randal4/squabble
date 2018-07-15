@@ -1,13 +1,12 @@
 import React from 'react';
-import SquabblesList from './SquabbleList';
 
-const Squabbles = ({key, header, description}) => {
+const Squabbles = ({id, header, description, onClick}) => {
   return(
-    <div>
-      <p> {header} </p>
-      {description}
+    <div onClick={() => onClick(id)}>
+      <h3> ({id}) - {header} </h3>
+      <p>{description}</p>
     </div>
-    
+
   );
 };
 

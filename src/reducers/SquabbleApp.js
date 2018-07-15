@@ -19,7 +19,21 @@ const initialState = {
 }
 
 function SquabbleApp (state = initialState, action){
-    return state;
+  switch (action.type) {
+      case 'DELETE_SQUABBLE':
+          console.log("Deleting Squabble:" + action.id);
+          // state.squabbles = state.squabbles.filter(sq =>
+          //     sq.id !== action.id
+          // );
+          return {
+            ...state,
+            squabbles: state.squabbles.filter(sq =>
+                sq.id !== action.id
+            )
+          }
+      default:
+          return state
+  }
 }
 
 export default SquabbleApp
