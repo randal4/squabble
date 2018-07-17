@@ -3,6 +3,7 @@ import Loader from './Loader'
 import { connect } from 'react-redux';
 import axios from 'axios';
 
+import StreamCard from './StreamCard';
 import { FetchRequest } from '../../actions/FetchRequest';
 import { FetchSuccess } from '../../actions/FetchSuccess';
 import { FetchFailure }from '../../actions/FetchFailure';
@@ -17,20 +18,42 @@ class Streams extends Component{
     axios.get('https://api.twitch.tv/kraken/streams/featured?client_id=dxziyievvo4bcidbmoonz4ep5kaq65')
       .then(response => {
         console.log(response);
-        this.props.fetchSuccess();
+        const streams = response.data.featured.map((f) => {
+          return f.stream;
+        });
+
+        this.props.fetchSuccess(streams);
       })
       .catch(e => {
-        this.props.fetchFailure();
+        this.props.fetchFailure(e);
       });
   }
 
+
   render(){
+    const streamCardItems = this.props.streams.map((stream) => {
+        console.log(stream);
+        return (<StreamCard
+        key={stream._id}
+        streamCover={stream.preview.medium}
+        streamLink={stream.channel.url}
+      />);
+    }
+    );
+
     return(
       <div>
       {this.props.status === 'loading' ? (
         <Loader/>
       ): (
-        <div></div>
+        this.props.status === 'success' ? (
+          <div className="stream-cards">
+            {streamCardItems}
+          </div>
+        ) : (
+          <div>
+          </div>
+        )
       )}
       </div>
     );
@@ -39,7 +62,8 @@ class Streams extends Component{
 
 const mapStateToProps = (state) => {
   return {
-    status: state.TwitchApp.status
+    status: state.TwitchApp.status,
+    streams: state.TwitchApp.streams
   }
 }
 
@@ -48,8 +72,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchRequest: () => {
       return dispatch(FetchRequest());
     },
-    fetchSuccess: () => {
-      return dispatch(FetchSuccess());
+    fetchSuccess: (streams) => {
+      return dispatch(FetchSuccess(streams));
     },
     fetchFailure: () => {
       return dispatch(FetchFailure());
