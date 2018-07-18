@@ -32,7 +32,6 @@ class Streams extends Component{
 
   render(){
     const streamCardItems = this.props.streams.map((stream) => {
-        console.log(stream);
         return (<StreamCard
         key={stream._id}
         streamCover={stream.preview.medium}
