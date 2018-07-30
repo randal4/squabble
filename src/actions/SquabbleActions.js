@@ -1,6 +1,6 @@
 export const DELETE_SQUABBLE = 'DELETE_SQUABBLE';
 
-export const deleteSquabble = (id, params) => {
+export const deleteSquabble = (id) => {
   return {
     type: DELETE_SQUABBLE,
     id
@@ -8,11 +8,11 @@ export const deleteSquabble = (id, params) => {
 }
 
 export const ADD_SQUABBLE = 'ADD_SQUABBLE';
-export const addSquabble = (id, header, description, params) => {
+export const addSquabble = (id, firebaseData) => {
   return {
     type: ADD_SQUABBLE,
-    id,
-    header,
-    description
+    id: id,
+    title: firebaseData.title,
+    author: firebaseData.author
   }
 }

@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import Squabble from './Squabble';
-import { connect } from 'react-redux';
 import * as actions from '../actions/SquabbleActions';
-import { RequestApi } from '../actions/RequestApi';
+import { FetchSquabbles } from '../actions/FetchSquabbles';
+import { connect } from 'react-redux';
+import { DeleteSquabble } from '../actions/DeleteSquabbles';
 
 class SquabbleList extends Component {
   componentWillMount() {
-    this.props.requestApi();
+    this.props.fetchSquabbles();
   }
 
   render(){
@@ -30,11 +31,10 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch, props) => {
   return {
     onClick: (id) => {
-      console.log(id);
-      return dispatch(actions.deleteSquabble(id));
+      return dispatch(DeleteSquabble(id));
     },
-    requestApi: () => {
-      return dispatch(RequestApi());
+    fetchSquabbles: () => {
+      return dispatch(FetchSquabbles());
     }
   };
 }

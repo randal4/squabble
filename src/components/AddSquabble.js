@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions/SquabbleActions'
+import { AddSquabbles } from '../actions/AddSquabbles';
 
-const AddSquabble = ({dispatch}) => {
+const AddSquabble = ({onClick}) => {
     let input;
 
     return (
@@ -11,11 +11,23 @@ const AddSquabble = ({dispatch}) => {
           input = node
         }/>
         <button onClick={ () =>{
-          dispatch(actions.addSquabble(10, this.input, 'testing'));
+          console.log("adding!")
+          onClick({
+            title: 'what',
+            author: 'testAuthor'
+          })
           input.value = '';
         }}>add</button>
       </div>
     );
 }
 
-export default connect()(AddSquabble);
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    onClick: (squabble) => {
+      return dispatch(AddSquabbles(squabble));
+    }
+  };
+}
+
+export default connect(null, mapDispatchToProps)(AddSquabble);
