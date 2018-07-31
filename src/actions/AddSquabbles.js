@@ -8,6 +8,5 @@ export const AddSquabbles = (newSquabble) => {
     const squabbles = database.ref('squabbles');
 
     const newSquabbleObj = squabbles.push(newSquabble);
-    //dispatch(addSquabble(newSquabbleObj.key, newSquabble));
     }
 }

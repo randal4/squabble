@@ -1,24 +1,6 @@
 const initialState = {
     squabbles: []
 }
-/*   squabbles : [
-    {
-      id: 1,
-      header: "Squabble Uno",
-      description: "This is the very first squabble.  Vote accordingly."
-    },
-    {
-      id: 2,
-      header: "Squabble Dos",
-      description: "This is the second squabble.  Vote now."
-    },
-    {
-      id: 3,
-      header: "Squabble Tres",
-      description: "This is the third squabble.  Vote now."
-    }
-  ]
-} */
 
 function SquabbleApp (state = initialState, action){
   switch (action.type) {
@@ -37,7 +19,11 @@ function SquabbleApp (state = initialState, action){
           squabbles: state.squabbles.concat({
             id: action.id,
             title: action.title,
-            author: action.author
+            author: action.author,
+            authorVotes: action.authorVotes,
+            opposerVotes: action.opposerVotes,
+            authorText: action.authorText,
+            opposerText: action.opposerText
           })
         }
       default:

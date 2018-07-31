@@ -13,6 +13,10 @@ export const addSquabble = (id, firebaseData) => {
     type: ADD_SQUABBLE,
     id: id,
     title: firebaseData.title,
-    author: firebaseData.author
+    author: firebaseData.author,
+    authorVotes: firebaseData.authorVotes,
+    opposerVotes: firebaseData.opposerVotes,
+    authorText: firebaseData.authorText,
+    opposerText: firebaseData.opposerText
   }
 }

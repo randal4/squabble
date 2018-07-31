@@ -1,0 +1,30 @@
+{
+  "authors" : [ {
+    "email" : "testAuthor1@test.com",
+    "name" : "testAuthor1"
+  } ],
+  "squabbles" : {
+    "0" : {
+      "author" : {
+        "testAuthor" : true
+      },
+      "createDate" : "2018/07/28 17:15:00",
+      "title" : "Squabble 1",
+      "authorVotes" : 26,
+      "opposerVotes" : 75,
+      "authorText" : "This is side a of the argument",
+      "opposerText" : "This is side b of the argument"
+    },
+    "1" : {
+      "author" : {
+        "testAuthor2" : true
+      },
+      "createDate" : "2018/07/28 17:10:00",
+      "title" : "Squabble 2",
+      "authorVotes" : 10,
+      "opposerVotes" : 555,
+      "authorText" : "This is side a of the argument",
+      "opposerText" : "This is side b of the argument"
+    }
+  }
+}
