@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Loader from './Loader'
+import Loader from './Loader';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
@@ -32,7 +32,7 @@ class Streams extends Component{
 
   render(){
     const streamCardItems = this.props.streams.map((stream) => {
-        return (<StreamCard
+      return (<StreamCard
         key={stream._id}
         streamCover={stream.preview.medium}
         streamLink={stream.channel.url}
@@ -42,18 +42,18 @@ class Streams extends Component{
 
     return(
       <div>
-      {this.props.status === 'loading' ? (
-        <Loader/>
-      ): (
-        this.props.status === 'success' ? (
-          <div className="stream-cards">
-            {streamCardItems}
-          </div>
-        ) : (
-          <div>
-          </div>
-        )
-      )}
+        {this.props.status === 'loading' ? (
+          <Loader/>
+        ): (
+          this.props.status === 'success' ? (
+            <div className="stream-cards">
+              {streamCardItems}
+            </div>
+          ) : (
+            <div>
+            </div>
+          )
+        )}
       </div>
     );
   }
@@ -63,8 +63,8 @@ const mapStateToProps = (state) => {
   return {
     status: state.TwitchApp.status,
     streams: state.TwitchApp.streams
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -77,7 +77,7 @@ const mapDispatchToProps = (dispatch) => {
     fetchFailure: () => {
       return dispatch(FetchFailure());
     }
-  }
+  };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Streams)
+export default connect(mapStateToProps, mapDispatchToProps)(Streams);

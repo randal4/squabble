@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { AddSquabbles } from "../actions/AddSquabbles";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { AddSquabbles } from '../actions/AddSquabbles';
 
 class AddSquabble extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "",
-      authorText: "",
-      opposerText: ""
+      title: '',
+      authorText: '',
+      opposerText: ''
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -16,21 +16,21 @@ class AddSquabble extends Component {
   }
 
   handleSubmit(e) {
-    console.log("adding!");
+    console.log('adding!');
     e.preventDefault();
 
     this.props.onClick(this.state);
 
     this.setState({
-      title: "",
-      authorText: "",
-      opposerText: ""
+      title: '',
+      authorText: '',
+      opposerText: ''
     });
   }
 
   handleInputChange(e) {
     const target = e.target;
-    const value = target.type === "checkbox" ? target.checked : target.value;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
     this.setState({
@@ -62,7 +62,7 @@ class AddSquabble extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch, props) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onClick: squabble => {
       return dispatch(AddSquabbles(squabble));

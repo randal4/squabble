@@ -4,12 +4,12 @@ import AddSquabble from './AddSquabble';
 
 const Squabbles = () => {
   return(
-  <div>
-    <p> Squabbles! </p>
-    <AddSquabble/>
-    <SquabbleList/>
-  </div>
-);
+    <div>
+      <p> Squabbles! </p>
+      <AddSquabble/>
+      <SquabbleList/>
+    </div>
+  );
 };
 
 export default Squabbles;

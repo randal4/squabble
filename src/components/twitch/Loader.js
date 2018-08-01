@@ -24,7 +24,7 @@ class Loader extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
-export default Loader
+export default Loader;

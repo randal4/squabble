@@ -6,10 +6,10 @@ const StreamCard = ({streamLink, streamCover}) => {
       <a href={streamLink}>
         <img className="stream-cover"
           src={streamCover}
-          />
+        />
       </a>
     </div>
-  )
+  );
 };
 
-export default StreamCard
+export default StreamCard;

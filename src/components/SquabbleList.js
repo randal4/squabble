@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Squabble from './Squabble';
-import * as actions from '../actions/SquabbleActions';
 import { FetchSquabbles } from '../actions/FetchSquabbles';
 import { connect } from 'react-redux';
 import { DeleteSquabble } from '../actions/DeleteSquabbles';
@@ -14,21 +13,21 @@ class SquabbleList extends Component {
     return(
       <ul>
         {this.props.squabbles.map(sq =>
-            <Squabble key={sq.id} {...sq} onClick={this.props.onClick}/>
-          )
+          <Squabble key={sq.id} {...sq} onClick={this.props.onClick}/>
+        )
         }
       </ul>
     );
   }
-};
+}
 
-const mapStateToProps = (state, props) => {
+const mapStateToProps = (state) => {
   return {
     squabbles: state.SquabbleApp.squabbles
-  }
+  };
 };
 
-const mapDispatchToProps = (dispatch, props) => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onClick: (id) => {
       return dispatch(DeleteSquabble(id));
@@ -37,6 +36,6 @@ const mapDispatchToProps = (dispatch, props) => {
       return dispatch(FetchSquabbles());
     }
   };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SquabbleList);
