@@ -1,22 +1,24 @@
 import React from 'react';
 
 const Squabbles = (props) => {
+  let {id, title, authorVotes, opposerVotes, authorText, opposerText, onClick} = props;
+
   return(
     <li>
-      <h3> ({props.id}) - {props.title} </h3>
+      <h3> ({id}) - {title} </h3>
       <div>
         <p>Votes</p>
-        <p>{props.authorVotes || 0} - {props.opposerVotes || 0}</p>
+        <p>{authorVotes || 0} - {opposerVotes || 0}</p>
       </div>
       <div>
         <div>
-          <p>{props.authorText}</p>
+          <p>{authorText}</p>
         </div>
         <div>
-          <p>{props.opposerText}</p>
+          <p>{opposerText}</p>
         </div>
       </div>
-      <button onClick={() => props.onClick(props.id)}>delete</button>
+      <button onClick={() => onClick(id)}>delete</button>
       <hr/>
     </li>
   );

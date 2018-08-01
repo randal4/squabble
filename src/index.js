@@ -8,7 +8,7 @@ import { logger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import reducers from "./reducers";
+import reducers from './reducers';
 
 
 let store = createStore(reducers, applyMiddleware(thunk, logger));

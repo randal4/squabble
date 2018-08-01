@@ -4,8 +4,8 @@ export const deleteSquabble = (id) => {
   return {
     type: DELETE_SQUABBLE,
     id
-  }
-}
+  };
+};
 
 export const ADD_SQUABBLE = 'ADD_SQUABBLE';
 export const addSquabble = (id, firebaseData) => {
@@ -18,5 +18,5 @@ export const addSquabble = (id, firebaseData) => {
     opposerVotes: firebaseData.opposerVotes,
     authorText: firebaseData.authorText,
     opposerText: firebaseData.opposerText
-  }
-}
+  };
+};
