@@ -5,6 +5,8 @@ import AddSquabble from './AddSquabble';
 const Squabbles = () => {
   return(
     <div>
+      <p> Squabbles! </p>
+      <AddSquabble/>
       <SquabbleList/>
     </div>
   );
