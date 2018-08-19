@@ -6,79 +6,117 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 
 const styles = {
   card: {
     marginBottom: 15,
+    maxWidh: 720,
+    margin: 'auto',
   },
   root: {
     flexGrow: 1,
   },
-  actions: {
-  },
-  vr: {
-    borderLeft: '1px grey solid',
-    height: 100,
-  },
   interior: {
-    alignContent: 'column',
-  }
+    border: '1px solid black',
+    borderRadius: 6,
+    padding: 4 
+  },
+  icons: {
+    margin: 5,
+    padding: 2,
+  },
+  footer: {
+    marginTop: 10,
+    marginRight: 20,
+    marginBottom: 10,
+    marginLeft: 20,
+  },
+  cardHeader: {
+    marginBottom: 10,
+    align: 'center'
+  },
 };
 
 const Squabbles = (props) => {
-  const { classes, id, title, authorVotes, opposerVotes, authorText, opposerText, onClick} = props;
+  const { id, classes, title, authorVotes, opposerVotes, authorText, opposerText, voteAuthorOnClick, voteOpposerOnClick, deleteOnClick} = props;
   return (
-    <Grid container className={classes.root} spacing={40}>
-      <Grid item xs={12} align='center'>
-        <Card raised='true' className={classes.card}>
-          <CardContent>
-            <Typography gutterBottom variant="headline" component="h2">
-              {title}
-            </Typography>
-            <hr/>
-            <Grid container>
-              <Grid item xs={5} className={classes.interior}>
-                <Typography component="p">
-                  {authorText}
-                </Typography>
-                <Typography component="p">
-                  {authorVotes}
-                </Typography>
-              </Grid>
-              <Grid item xs={1}>
-                <div className={classes.vr}></div>
-              </Grid>
-              <Grid item xs={5} className={classes.interior}>
-                <Typography component="p">
-                  {opposerText}
-                </Typography>
-                <Typography component="p">
-                  {opposerVotes}
-                </Typography>
-              </Grid>
+    <Card raised={true} className={classes.card}>
+      <CardContent>
+        <div className={classes.cardHeader}>
+          <Grid container >
+            <Grid item xs={12} m={2} align='center'>
+              <span className={classes.icons}> <FontAwesomeIcon icon={['fas', 'user-circle']} size="3x" /></span>
             </Grid>
-          </CardContent>
+            <Grid item xs={12} m={10} align='center'>
+              <Typography gutterBottom variant="headline" component="h2">
+                {title}
+              </Typography>
+            </Grid>
 
-          <CardActions className={classes.actions}>
-            <Grid container>
-              <Grid item xs={5}>
-                <Button variant="outlined" size="small" color="primary">
+          </Grid>
+        </div>
+        <Grid container>
+          <Grid item xs={5} className={classes.interior}>
+            <Typography component="p">
+              {authorText}
+            </Typography>
+
+          </Grid>
+          <Grid item xs={2}>
+            <div className={classes.vr}></div>
+          </Grid>
+          <Grid item xs={5} className={classes.interior}>
+            <Typography component="p">
+              {opposerText}
+            </Typography>
+
+          </Grid>
+        </Grid>
+      </CardContent>
+
+      <CardActions className={classes.actions}>
+        <Grid container>
+          <Grid item xs={5} align='center'>
+            <Typography variant='headline'>
+              {authorVotes}
+            </Typography>
+            <Button variant="raised" size="small" color="primary" onClick={() => voteAuthorOnClick(id)}>
                   Vote
-                </Button>
-              </Grid>
-              <Grid item xs={2}>
-              </Grid>
-              <Grid item xs={5}>
-                <Button variant="outlined" size="small" color="primary">
+            </Button>
+          </Grid>
+          <Grid item xs={2}>
+          </Grid>
+          <Grid item xs={5} align='center'>                
+            <Typography variant='headline'>
+              {opposerVotes}
+            </Typography>
+            <Button variant="raised" size="small" color="primary" onClick={() => voteOpposerOnClick(id)}>
                   Vote
-                </Button>
-              </Grid>
-            </Grid>
-          </CardActions>
-        </Card>
-      </Grid>
-    </Grid>
+            </Button>
+          </Grid>
+        </Grid>
+      </CardActions>
+
+      <hr/>
+
+      <div id="footer" className={classes.footer}>
+        <Grid container>
+          <Grid item xs={6} align='left'>
+            <span className={classes.icons}> <FontAwesomeIcon icon={false ? ['fas','thumbs-up'] : ['far', 'thumbs-up']} size="lg" /></span>
+            <span className={classes.icons}> <FontAwesomeIcon icon={false ? ['fas','star'] : ['far', 'star']} size="lg" /></span>
+            <span className={classes.icons}> <FontAwesomeIcon icon={false ? ['fas','trash-alt'] : ['far', 'trash-alt']} size="lg" onClick={() => deleteOnClick(id)}/></span>
+
+          </Grid>
+          <Grid item xs={6} align='right'>
+            <span className={classes.icons}> <FontAwesomeIcon icon={['fab','facebook-square']} size="lg"/></span>
+            <span className={classes.icons}> <FontAwesomeIcon icon={['fab','twitter-square']} size="lg"/></span>
+          </Grid>
+        </Grid>
+      </div>
+    </Card>
   );
 };
 export default withStyles(styles)(Squabbles);

@@ -1,4 +1,4 @@
-import firebase from '../config/config';
+import { firebase } from '../firebase';
 
 export const AddSquabbles = (newSquabble) => {
   return () => {

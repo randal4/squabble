@@ -12,6 +12,11 @@ function SquabbleApp(state = initialState, action) {
           sq.id !== action.id
         )
       };
+    case 'VOTE_SQUABBLE':
+      console.log('Voting Squabble: ' + action.id + ' Side: ' + action.side);
+      return {
+        
+      };
     case 'ADD_SQUABBLE':
       console.log('Adding Squabble');
       return {

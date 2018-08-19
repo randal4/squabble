@@ -7,6 +7,15 @@ export const deleteSquabble = (id) => {
   };
 };
 
+export const VOTE_SQUABBLE = 'VOTE_SQUABBLE';
+export const voteSquabble = (id, side) => {
+  return {
+    type: VOTE_SQUABBLE,
+    id,
+    side
+  };
+};
+
 export const ADD_SQUABBLE = 'ADD_SQUABBLE';
 export const addSquabble = (id, firebaseData) => {
   return {
