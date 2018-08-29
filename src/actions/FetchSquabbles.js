@@ -1,5 +1,5 @@
 import { firebase } from '../firebase';
-import { addSquabble, deleteSquabble } from './SquabbleActions';
+import { addSquabble, deleteSquabble, updateSquabble } from './SquabbleActions';
 
 export const FetchSquabbles = () => {
   return (dispatch) => {
@@ -16,5 +16,8 @@ export const FetchSquabbles = () => {
       dispatch(deleteSquabble(snapshot.key));
     });
 
+    squabbles.on('child_changed', (snapshot) => {
+      dispatch(updateSquabble(snapshot.key, snapshot.val()));
+    });
   };
 };

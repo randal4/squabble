@@ -13,7 +13,14 @@
       "authorVotes" : 26,
       "opposerVotes" : 75,
       "authorText" : "This is side a of the argument",
-      "opposerText" : "This is side b of the argument"
+      "opposerText" : "This is side b of the argument",
+      "authorVoteUids": {
+        "u123125" : true,
+        "u123121" : true
+      },
+      "opposerVoteUids": {
+        "u123123" : true
+      }
     },
     "1" : {
       "author" : {
@@ -24,7 +31,14 @@
       "authorVotes" : 10,
       "opposerVotes" : 555,
       "authorText" : "This is side a of the argument",
-      "opposerText" : "This is side b of the argument"
+      "opposerText" : "This is side b of the argument",
+      "authorVoteUids": {
+        "u123125" : true,
+        "u123121" : true
+      },
+      "opposerVoteUids": {
+        "u123123": true
+      }
     }
   }
 }

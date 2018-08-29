@@ -16,6 +16,22 @@ export const voteSquabble = (id, side) => {
   };
 };
 
+export const UPDATE_SQUABBLE = 'UPDATE_SQUABBLE';
+export const updateSquabble = (id, firebaseData) => {
+  return {
+    type: UPDATE_SQUABBLE,
+    id: id,
+    title: firebaseData.title,
+    author: firebaseData.author,
+    authorVotes: firebaseData.authorVotes,
+    opposerVotes: firebaseData.opposerVotes,
+    authorText: firebaseData.authorText,
+    opposerText: firebaseData.opposerText,
+    authorVoteUids: firebaseData.authorVoteUids,
+    opposerVoteUids: firebaseData.opposerVoteUids,
+  };
+};
+
 export const ADD_SQUABBLE = 'ADD_SQUABBLE';
 export const addSquabble = (id, firebaseData) => {
   return {
@@ -26,6 +42,8 @@ export const addSquabble = (id, firebaseData) => {
     authorVotes: firebaseData.authorVotes,
     opposerVotes: firebaseData.opposerVotes,
     authorText: firebaseData.authorText,
-    opposerText: firebaseData.opposerText
+    opposerText: firebaseData.opposerText,
+    authorVoteUids: firebaseData.authorVoteUids,
+    opposerVoteUids: firebaseData.opposerVoteUids,
   };
 };

@@ -27,7 +27,7 @@ const styles = {
 class Header extends React.Component {
 
   state = {
-    auth: true,
+    auth: this.props.currentUser != null,
     anchorEl: null,
   };
 
@@ -96,6 +96,7 @@ class Header extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    currentUser: state.currentUser,
   };
 };
 

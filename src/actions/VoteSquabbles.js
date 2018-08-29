@@ -1,25 +1,37 @@
 import { firebase } from '../firebase';
-import { voteSquabble } from './SquabbleActions';
 
 export const VoteSquabbles = (id, side) => {
-  return (dispatch) => {
+  return () => {
     console.log('Editing Squabble [' + id + '] ... vote [' + side + ']');
     const database = firebase.database();
     const squabbleRef = database.ref('squabbles/' + id );
     const uid = firebase.auth().currentUser.uid;
 
-    //console.log(squabble);
-    //squabble.update({authorVotes: squabble.authorVotes++});
-    //dispatch(voteSquabble(id, side));
-    squabbleRef.transaction(function(squabble) {
-      if (squabble) {
-        if (!squabble.authorVoteUids) {
-          squabble.authorVoteUids = {};
+    if(side === 'author'){
+      squabbleRef.transaction(function(squabble) {
+        if (squabble) {
+          if (!squabble.authorVoteUids) {
+            squabble.authorVoteUids = {};
+          }
+          squabble.authorVoteUids[uid] = true;
+          squabble.authorVotes++;
         }
-        squabble.authorVoteUids[uid] = true;
-        squabble.authorVotes++;
-      }
-      return squabble;
-    });
+
+        return squabble;
+      });
+    } else if(side === 'opposer'){
+      squabbleRef.transaction(function(squabble) {
+        if (squabble) {
+          if (!squabble.opposerVoteUids) {
+            squabble.opposerVoteUids = {};
+          }
+          squabble.opposerVoteUids[uid] = true;
+          squabble.opposerVotes++;
+        }
+
+        return squabble;
+      });
+    }
+
   };
 };

@@ -17,6 +17,29 @@ function SquabbleApp(state = initialState, action) {
       return {
         
       };
+    case 'UPDATE_SQUABBLE':
+      console.log('Updating Squabble: ' + action.id);
+
+      return {
+        ...state,
+        squabbles: state.squabbles.map((item) => {
+          if(item.id === action.id){
+            return {
+              id: action.id,
+              title: action.title,
+              author: action.author,
+              authorVotes: action.authorVotes,
+              opposerVotes: action.opposerVotes,
+              authorText: action.authorText,
+              opposerText: action.opposerText,
+              authorVoteUids: action.authorVoteUids,
+              opposerVoteUids: action.opposerVoteUids,
+            };
+          }
+  
+          return item; 
+        }),
+      };
     case 'ADD_SQUABBLE':
       console.log('Adding Squabble');
       return {
@@ -28,7 +51,9 @@ function SquabbleApp(state = initialState, action) {
           authorVotes: action.authorVotes,
           opposerVotes: action.opposerVotes,
           authorText: action.authorText,
-          opposerText: action.opposerText
+          opposerText: action.opposerText,
+          authorVoteUids: action.authorVoteUids,
+          opposerVoteUids: action.opposerVoteUids,
         })
       };
     default:

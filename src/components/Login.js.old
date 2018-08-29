@@ -1,0 +1,101 @@
+import React, {Component} from 'react';
+import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import TextField from '@material-ui/core/TextField';
+import { withStyles, MuiThemeProvider } from '@material-ui/core/styles';
+import { auth } from '../firebase';
+
+const styles = {
+  submitButton: {
+    margin: 15,
+  },
+
+};
+
+class Login extends Component{
+  
+  constructor(props){
+    super(props);
+
+    this.state = {
+      user: '',
+      password: '',
+      error: '',
+    };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  handleSubmit(e){
+    e.preventDefault();
+
+    auth.doSignInWithEmailAndPassword(this.state.user, this.state.password)
+      .then(() => {
+        alert('Signed in!');
+      })
+      .catch(error =>{
+        this.setState({
+          error: error,
+        });
+      });
+
+    this.setState({
+      user: '',
+      password: '',
+      error: '',
+    });
+
+  }
+
+  handleInputChange(e){
+    const target = e.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  }
+
+  render(){
+    const {classes} = this.props;
+
+    return (
+      <div>
+        <MuiThemeProvider>
+          <div>
+            <AppBar>
+              <Typography variant="title" color="inherit">
+                Login
+              </Typography>
+            </AppBar>
+            <TextField
+              hintText="Enter your Username"
+              floatingLabelText="Username"
+              onChange = {this.handleInputChange}
+              name='user'
+              value={this.state.user}
+            />
+            <br/>
+            <TextField
+              type="password"
+              hintText="Enter your Password"
+              floatingLabelText="Password"
+              onChange = {this.handleInputChange}
+              name='password'
+              value={this.state.password}
+            />
+            <br/>
+            <Button variant="raised" label="Submit" primary={true} className={classes.submitButton} onClick={this.handleSubmit}/>
+          </div>
+          { this.state.error && <p>{this.state.error.message}</p> }
+        </MuiThemeProvider>
+      </div>
+    );
+  }
+
+}
+
+export default withStyles(styles)(Login);

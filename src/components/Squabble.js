@@ -7,8 +7,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-
+import { firebase } from '../firebase';
 
 const styles = {
   card: {
@@ -41,7 +40,12 @@ const styles = {
 };
 
 const Squabbles = (props) => {
-  const { id, classes, title, authorVotes, opposerVotes, authorText, opposerText, voteAuthorOnClick, voteOpposerOnClick, deleteOnClick} = props;
+  const { id, classes, title, authorVoteUids, opposerVoteUids, authorVotes, opposerVotes, authorText, opposerText, voteAuthorOnClick, voteOpposerOnClick, deleteOnClick} = props;
+
+  const uid = firebase.auth().currentUser.uid;
+
+  const disableVote = (authorVoteUids[uid] || opposerVoteUids[uid]);
+  
   return (
     <Card raised={true} className={classes.card}>
       <CardContent>
@@ -83,7 +87,7 @@ const Squabbles = (props) => {
             <Typography variant='headline'>
               {authorVotes}
             </Typography>
-            <Button variant="raised" size="small" color="primary" onClick={() => voteAuthorOnClick(id)}>
+            <Button variant="raised" disabled={disableVote} size="small" color="primary" onClick={() => voteAuthorOnClick(id)}>
                   Vote
             </Button>
           </Grid>
@@ -93,7 +97,7 @@ const Squabbles = (props) => {
             <Typography variant='headline'>
               {opposerVotes}
             </Typography>
-            <Button variant="raised" size="small" color="primary" onClick={() => voteOpposerOnClick(id)}>
+            <Button variant="raised" disabled={disableVote} size="small" color="primary" onClick={() => voteOpposerOnClick(id)}>
                   Vote
             </Button>
           </Grid>
