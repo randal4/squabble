@@ -11,6 +11,10 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import { auth } from '../firebase';
+import { userLogin } from '../actions/AuthenticationActions';
+import compose from 'recompose/compose';
+import { connect } from 'react-redux';
+import { UserLogin } from '../actions/UserLogin';
 
 const styles = theme => ({
   layout: {
@@ -61,19 +65,9 @@ class Login extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-    
-    auth.doSignInWithEmailAndPassword(this.state.email, this.state.password)
-      .then((e) => {
-        alert('Signed in!');
-        console.log(e);
+   
+    this.props.userLogin(this.state.email, this.state.password);
 
-      })
-      .catch(error =>{
-        this.setState({
-          error: error,
-        });
-      });
-    
     this.setState({
       email: '',
       password: '',
@@ -128,6 +122,7 @@ class Login extends Component {
               >
               Sign in
               </Button>
+              { this.props.error && <p>{this.props.error.message}</p> }
             </form>
           </Paper>
         </main>
@@ -140,4 +135,21 @@ Login.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Login);
+const mapStateToProps = (state) => {
+  return {
+    error: state.SquabbleApp.error,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    userLogin: (email, password) => {
+      return dispatch(UserLogin(email, password));
+    }
+  };
+};
+
+export default compose(
+  withStyles(styles),
+  connect(mapStateToProps, mapDispatchToProps)
+)(Login);

@@ -4,8 +4,21 @@ const initialState = {
 
 function SquabbleApp(state = initialState, action) {
   switch (action.type) {
+    case 'LOGIN_SUCCESS':
+      console.log('User Login Success: ' + action.user.email);
+      return {
+        ...state,
+        currentUser: action.user
+      };
+    case 'LOGIN_FAILURE':
+      console.log('User Login failure: ' + action.error);
+      return {
+        ...state,
+        currentUser: false,
+        error: action.error
+      };
     case 'DELETE_SQUABBLE':
-      console.log('Deleting Squabble:' + action.id);
+      console.log('Deleting Squabble: ' + action.id);
       return {
         ...state,
         squabbles: state.squabbles.filter(sq =>
