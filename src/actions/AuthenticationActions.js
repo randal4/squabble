@@ -13,3 +13,10 @@ export const loginFailure = (error) => {
     error
   };
 };
+
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+export const logoutSuccess = () => {
+  return {
+    type: LOGOUT_SUCCESS,
+  };
+};

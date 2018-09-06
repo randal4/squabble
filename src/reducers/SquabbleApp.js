@@ -17,6 +17,12 @@ function SquabbleApp(state = initialState, action) {
         currentUser: false,
         error: action.error
       };
+    case 'LOGOUT_SUCCESS':
+      console.log('User Logout Success');
+      return {
+        ...state,
+        currentUser: null,
+      };
     case 'DELETE_SQUABBLE':
       console.log('Deleting Squabble: ' + action.id);
       return {
@@ -31,7 +37,7 @@ function SquabbleApp(state = initialState, action) {
         
       };
     case 'UPDATE_SQUABBLE':
-      console.log('Updating Squabble: ' + action.id);
+      console.log('UpdatingtSquabble: ' + action.id);
 
       return {
         ...state,

@@ -10,8 +10,6 @@ import LockIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import { auth } from '../firebase';
-import { userLogin } from '../actions/AuthenticationActions';
 import compose from 'recompose/compose';
 import { connect } from 'react-redux';
 import { UserLogin } from '../actions/UserLogin';
@@ -45,6 +43,10 @@ const styles = theme => ({
   submit: {
     marginTop: theme.spacing.unit * 3,
   },
+  error: {
+    color: '#ff3939',
+    margin: 15
+  }
 });
 
 
@@ -67,7 +69,7 @@ class Login extends Component {
     e.preventDefault();
    
     this.props.userLogin(this.state.email, this.state.password);
-
+    this.props.history.push('/')
     this.setState({
       email: '',
       password: '',
@@ -97,6 +99,7 @@ class Login extends Component {
               <LockIcon />
             </Avatar>
             <Typography variant="headline">Sign in</Typography>
+            { this.props.error && <span className={classes.error}>{this.props.error.message}</span> }
             <form className={classes.form} onSubmit={this.handleSubmit}>
               <FormControl margin="normal" required fullWidth>
                 <InputLabel htmlFor="email">Email Address</InputLabel>
@@ -122,7 +125,7 @@ class Login extends Component {
               >
               Sign in
               </Button>
-              { this.props.error && <p>{this.props.error.message}</p> }
+
             </form>
           </Paper>
         </main>

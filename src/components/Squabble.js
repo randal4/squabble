@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { firebase } from '../firebase';
 
 const styles = {
   card: {
@@ -42,9 +41,9 @@ const styles = {
 const Squabbles = (props) => {
   const { id, classes, title, authorVoteUids, opposerVoteUids, authorVotes, opposerVotes, authorText, opposerText, voteAuthorOnClick, voteOpposerOnClick, deleteOnClick} = props;
 
-  const uid = firebase.auth().currentUser.uid;
+  const uid = props.currentUser.uid; 
 
-  const disableVote = (authorVoteUids[uid] || opposerVoteUids[uid]);
+  const disableVote = (uid === '' || authorVoteUids[uid] || opposerVoteUids[uid]);
   
   return (
     <Card raised={true} className={classes.card}>
