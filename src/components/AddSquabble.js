@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AddSquabbles } from '../actions/AddSquabbles';
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import Paper from '@material-ui/core/Paper';
 
 class AddSquabble extends Component {
   constructor(props) {
@@ -40,24 +45,39 @@ class AddSquabble extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
+      <Paper>
+        <form onSubmit={this.handleSubmit}>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="title">
           Title:
-          <input type="text" name="title" value={this.state.title} onChange={this.handleInputChange} />
-        </label>
-        <br/>
-        <label>
+            </InputLabel>
+            <Input type="text" name="title" value={this.state.title} onChange={this.handleInputChange} autoFocus/>
+          </FormControl>
+          <br/>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="authorText">
           Your side of the story:
-          <input type="textarea" name="authorText" value={this.state.authorText} onChange={this.handleInputChange} />
-        </label>
-        <br/>
-        <label>
+            </InputLabel>
+            <Input type="textarea" name="authorText" value={this.state.authorText} onChange={this.handleInputChange} />
+          </FormControl>
+          <br/>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="opposerText">
           Their side of the story: 
-          <input type="textarea" name="opposerText" value={this.state.opposerText} onChange={this.handleInputChange} />
-        </label>
-        <br/>
-        <input type="submit" value="Add" />
-      </form>
+            </InputLabel>
+            <Input type="textarea" name="opposerText" value={this.state.opposerText} onChange={this.handleInputChange} />
+          </FormControl>
+          <br/>
+          <Button type="submit" 
+            value="Add" 
+            fullWidth
+            variant="raised"
+            color="primary"
+          >
+          Create
+          </Button>
+        </form>
+      </Paper>
     );
   }
 }

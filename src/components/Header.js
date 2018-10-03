@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import AccountCircleOutlined from '@material-ui/icons/AccountCircleOutlined';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { UserLogout } from '../actions/UserLogout';
@@ -21,6 +22,10 @@ const styles = {
   },
   flex: {
     flexGrow: 1,
+  },
+  link: {
+    flexGrow: 1,
+    cursor: 'pointer',
   },
   menuButton: {
     marginLeft: -12,
@@ -50,9 +55,7 @@ class Header extends React.Component {
     this.props.history.push('/login');
   }
 
-
   render(){
-    console.log('Rendering Header');
     const { classes, currentUser } = this.props;
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
@@ -64,14 +67,20 @@ class Header extends React.Component {
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit" className={classes.flex}>
-              Squabbles!
+            <Typography variant="title" color="inherit" className={classes.flex} onClick={() => this.props.history.push('/')}>
+              <span className={classes.link}>Squabbles!</span>
             </Typography>
         
             {!currentUser && (
-              <div>
-                <FontAwesomeIcon icon={['fas','sign-in-alt']} size="lg" onClick={() => this.handleLogin()} />
-              </div>
+              <IconButton
+                onClick={() => this.handleLogin()}
+                color="inherit"
+              >
+                <AccountCircleOutlined />
+              </IconButton>
+              //<div>
+            //<FontAwesomeIcon icon={['fas','sign-in-alt']} size="lg" onClick={() => this.handleLogin()} />
+              //</div>
             )}
 
             {currentUser && (
