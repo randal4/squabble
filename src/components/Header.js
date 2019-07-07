@@ -67,7 +67,7 @@ class Header extends React.Component {
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
               <MenuIcon />
             </IconButton>
-            <Typography variant="title" color="inherit" className={classes.flex} onClick={() => this.props.history.push('/')}>
+            <Typography variant="title" color="inherit" className={classes.flex} onClick={() => this.props.history.push('/squabbles')}>
               <span className={classes.link}>Squabbles!</span>
             </Typography>
         
@@ -78,9 +78,6 @@ class Header extends React.Component {
               >
                 <AccountCircleOutlined />
               </IconButton>
-              //<div>
-            //<FontAwesomeIcon icon={['fas','sign-in-alt']} size="lg" onClick={() => this.handleLogin()} />
-              //</div>
             )}
 
             {currentUser && (

@@ -20,12 +20,12 @@ class SquabbleList extends Component {
   }
 
   render(){
-    const { classes } = this.props;
+    const { classes, currentUser } = this.props;
 
     return(
       <ul className={classes.ul}>
         {this.props.squabbles.map(sq =>
-          <Squabble key={sq.id} {...sq} deleteOnClick={this.props.deleteOnClick} voteOpposerOnClick={this.props.voteOpposerOnClick} voteAuthorOnClick={this.props.voteAuthorOnClick}/>
+          <Squabble key={sq.id} {...sq} currentUser={currentUser} deleteOnClick={this.props.deleteOnClick} voteOpposerOnClick={this.props.voteOpposerOnClick} voteAuthorOnClick={this.props.voteAuthorOnClick}/>
         )
         }
       </ul>
@@ -35,6 +35,7 @@ class SquabbleList extends Component {
 
 const mapStateToProps = (state) => {
   return {
+    currentUser: state.SquabbleApp.currentUser,
     squabbles: state.SquabbleApp.squabbles
   };
 };

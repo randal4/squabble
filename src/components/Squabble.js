@@ -39,9 +39,9 @@ const styles = {
 };
 
 const Squabbles = (props) => {
-  const { id, classes, title, authorVoteUids, opposerVoteUids, authorVotes, opposerVotes, authorText, opposerText, voteAuthorOnClick, voteOpposerOnClick, deleteOnClick} = props;
+  const { id, currentUser, classes, title, authorVoteUids, opposerVoteUids, authorVotes, opposerVotes, authorText, opposerText, voteAuthorOnClick, voteOpposerOnClick, deleteOnClick} = props;
 
-  const uid = props.currentUser.uid; 
+  const uid = currentUser.uid; 
 
   const disableVote = (uid === '' || authorVoteUids[uid] || opposerVoteUids[uid]);
   
@@ -122,4 +122,6 @@ const Squabbles = (props) => {
     </Card>
   );
 };
+
+
 export default withStyles(styles)(Squabbles);

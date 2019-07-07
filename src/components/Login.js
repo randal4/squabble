@@ -69,7 +69,7 @@ class Login extends Component {
     e.preventDefault();
    
     this.props.userLogin(this.state.email, this.state.password);
-    this.props.history.push('/')
+    this.props.history.push('/');
     this.setState({
       email: '',
       password: '',
